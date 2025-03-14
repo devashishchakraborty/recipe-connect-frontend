@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import Editor from "./Editor";
+import Editor from "../components/Editor";
 import { useEffect, useState } from "react";
 
 const EditRecipe = ({ token }) => {

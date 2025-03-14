@@ -6,8 +6,8 @@ import rehypeSanitize from "rehype-sanitize";
 import rehypeRaw from "rehype-raw";
 import { formatTimestamp } from "../utils";
 import "../styles/Recipe.css";
-import Comments from "./Comments";
-import NotFound from "./NotFound";
+import Comments from "../components/Comments";
+import NotFound from "../components/NotFound";
 
 const Recipe = ({ token, user }) => {
   const { recipeId } = useParams();

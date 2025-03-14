@@ -1,18 +1,18 @@
 import { Route, Routes, Link, Navigate } from "react-router-dom";
-import Home from "./components/Home";
+import Home from "./pages/Home";
 import Header from "./components/Header";
 import NotFound from "./components/NotFound";
-import Recipe from "./components/Recipe";
-import Recipes from "./components/Recipes";
-import Login from "./components/Login";
-import SignUp from "./components/SignUp";
-import CreateRecipe from "./components/CreateRecipe";
-import EditRecipe from "./components/EditRecipe";
+import Recipe from "./pages/Recipe";
+import Recipes from "./pages/Recipes";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
+import CreateRecipe from "./pages/CreateRecipe";
+import EditRecipe from "./pages/EditRecipe";
 import { useEffect, useState } from "react";
 import "@picocss/pico/css/pico.conditional.min.css";
 import "@mdxeditor/editor/style.css";
 import "./App.css";
-import Profile from "./components/Profile";
+import Profile from "./pages/Profile";
 
 function App() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
