@@ -1,13 +1,12 @@
 
 # OdinBlog Dashboard 
 - This repository contains the dashboard for the Blog project, enabling users to manage posts and moderate comments.
-- Live Link -> [Here](https://odinblog-dashboard.pages.dev/)
-- Blog API created previously [here](https://github.com/devashishchakraborty/blog-api).
-- [Follow this](https://github.com/devashishchakraborty/odinblog-frontend) to show your Blog to world.
+- Live Link -> [Here](https://recipe-connect.pages.dev/)
+- Backend API created previously [here](https://github.com/devashishchakraborty/recipe-connect-backend).
 
 ## Features
 
-- **Post Management**: Create, edit, publish/unpublish, and delete blog posts.
+- **Post Management**: Create, edit, publish/unpublish, and delete Recipes.
 - **Comment Moderation**: View and delete inappropriate comments.
 - **Authentication**: Secure login to access the dashboard.
 
@@ -25,8 +24,8 @@
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/devashishchakraborty/odinblog-dashboard.git
-   cd odinblog-dashboard
+   git clone https://github.com/devashishchakraborty/recipe-connect-frontend.git
+   cd recipe-connect-frontend
    ```
 
 2. **Install dependencies**:
@@ -42,8 +41,3 @@
    ```
 
    The dashboard will be accessible at `http://localhost:5173/`.
-
-## Screenshots
-![image](https://github.com/user-attachments/assets/9eeb22e0-acda-480b-8175-b15aeafc8e38)
-![image](https://github.com/user-attachments/assets/50d4557e-c807-4ee7-a587-849ac070040d)
-![image](https://github.com/user-attachments/assets/1870241b-7d5d-4015-b91c-92dd071e070c)

@@ -26,6 +26,11 @@
   }
 }
 
+.recipes .recipeMeta{
+  font-size: 0.7em;
+  color: var(--pico-secondary) !important;
+}
+
 details.recipeActions {
   position: absolute !important;
   right: 12px;

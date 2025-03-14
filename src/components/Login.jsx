@@ -15,7 +15,7 @@ const Login = ({ setUser, setToken }) => {
     setIsSubmitting(true);
     try {
       const baseUrl = import.meta.env.VITE_API_BASE_URL;
-      const response = await fetch(`"${baseUrl}/login`, {
+      const response = await fetch(`${baseUrl}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

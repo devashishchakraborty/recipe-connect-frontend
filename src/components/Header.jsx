@@ -24,6 +24,9 @@ const Header = ({ user, setUser, setToken }) => {
           </li>
         </ul>
         <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
           {user ? (
             <>
               <li>
@@ -60,9 +63,6 @@ const Header = ({ user, setUser, setToken }) => {
             </>
           ) : (
             <>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
               <li>
                 <Link to="/login">Login</Link>
               </li>

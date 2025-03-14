@@ -10,6 +10,7 @@ import "../styles/Recipes.css";
 import remarkGfm from "remark-gfm";
 import rehypeSanitize from "rehype-sanitize";
 import rehypeRaw from "rehype-raw";
+import { formatTimestamp } from "../utils";
 
 const Recipes = ({ token, user, all = false }) => {
   const [recipes, setRecipes] = useState(null);
@@ -17,9 +18,8 @@ const Recipes = ({ token, user, all = false }) => {
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
-        const baseUrl = import.meta.env.VITE_API_BASE_URL;
         const response = await fetch(
-          `${baseUrl}/recipes/${all ? "" : `user`}`,
+          `${import.meta.env.VITE_API_BASE_URL}/recipes/${all ? "" : `user`}`,
           {
             method: "GET",
             headers: {
@@ -46,7 +46,7 @@ const Recipes = ({ token, user, all = false }) => {
   const togglePublish = async (recipe) => {
     try {
       const response = await fetch(
-        `https://blog-api-qyys.onrender.com/recipes/${recipe.id}`,
+        `${import.meta.env.VITE_API_BASE_URL}/recipes/${recipe.id}`,
         {
           method: "PUT",
           headers: {
@@ -74,7 +74,7 @@ const Recipes = ({ token, user, all = false }) => {
   const deleteRecipe = async (recipeId) => {
     try {
       const response = await fetch(
-        `https://blog-api-qyys.onrender.com/recipes/${recipeId}`,
+        `${import.meta.env.VITE_API_BASE_URL}/recipes/${recipeId}`,
         {
           method: "DELETE",
           headers: {
@@ -114,17 +114,24 @@ const Recipes = ({ token, user, all = false }) => {
                           <div>
                             <b>{recipe.title}</b>
                           </div>
-                          <span
-                            className="publishedStatus"
-                            style={{
-                              backgroundColor: recipe.published
-                                ? "green"
-                                : "#FF9500",
-                            }}
-                          >
-                            &#9679;{" "}
-                            {recipe.published ? "Published" : "Unpublished"}
-                          </span>
+                          {all ? (
+                            <div className="recipeMeta">
+                              <span>By {recipe.author.name}</span> &#8226;{" "}
+                              <span>{formatTimestamp(recipe.created_at)}</span>
+                            </div>
+                          ) : (
+                            <span
+                              className="publishedStatus"
+                              style={{
+                                backgroundColor: recipe.published
+                                  ? "green"
+                                  : "#FF9500",
+                              }}
+                            >
+                              &#9679;{" "}
+                              {recipe.published ? "Published" : "Unpublished"}
+                            </span>
+                          )}
                         </header>
                         <Markdown
                           remarkPlugins={[remarkGfm]}
@@ -134,56 +141,58 @@ const Recipes = ({ token, user, all = false }) => {
                         </Markdown>
                       </article>
                     </Link>
-                    <details className="dropdown recipeActions">
-                      <summary>Update</summary>
-                      <ul>
-                        {recipe.author_id === user.id && (
-                          <>
-                            <li>
-                              <Link to={`/recipes/${recipe.id}/edit`}>
-                                <MdiEdit />
-                                Edit
-                              </Link>
-                            </li>
-                            <li>
-                              <Link
-                                to="#"
-                                onClick={() => togglePublish(recipe)}
-                              >
-                                {recipe.published ? (
-                                  <>
-                                    <MdiPublishOff />
-                                    Unpublish
-                                  </>
-                                ) : (
-                                  <>
-                                    <MdiPublish />
-                                    Publish
-                                  </>
-                                )}
-                              </Link>
-                            </li>
-                          </>
-                        )}
+                    {all || (
+                      <details className="dropdown recipeActions">
+                        <summary>Update</summary>
+                        <ul>
+                          {recipe.author_id === user.id && (
+                            <>
+                              <li>
+                                <Link to={`/recipes/${recipe.id}/edit`}>
+                                  <MdiEdit />
+                                  Edit
+                                </Link>
+                              </li>
+                              <li>
+                                <Link
+                                  to="#"
+                                  onClick={() => togglePublish(recipe)}
+                                >
+                                  {recipe.published ? (
+                                    <>
+                                      <MdiPublishOff />
+                                      Unpublish
+                                    </>
+                                  ) : (
+                                    <>
+                                      <MdiPublish />
+                                      Publish
+                                    </>
+                                  )}
+                                </Link>
+                              </li>
+                            </>
+                          )}
 
-                        <li>
-                          <Link
-                            to="#"
-                            style={{ color: "crimson" }}
-                            onClick={() => deleteRecipe(recipe.id)}
-                          >
-                            <MdiDelete />
-                            Delete
-                          </Link>
-                        </li>
-                      </ul>
-                    </details>
+                          <li>
+                            <Link
+                              to="#"
+                              style={{ color: "crimson" }}
+                              onClick={() => deleteRecipe(recipe.id)}
+                            >
+                              <MdiDelete />
+                              Delete
+                            </Link>
+                          </li>
+                        </ul>
+                      </details>
+                    )}
                   </div>
                 ))}
               </div>
             ) : (
               <div>
-                It's empty in here. Create a{" "}
+                It's empty in here. Publish a{" "}
                 <Link to="/recipes/new">new recipe</Link>!
               </div>
             )
