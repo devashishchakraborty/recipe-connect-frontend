@@ -1,0 +1,28 @@
+.recipeMeta,
+.commentsMeta,
+.commentMeta .authorEmail{
+  font-size: 0.8em;
+  color: var(--pico-secondary);
+}
+
+.commentSection details{
+  max-width: 720px;
+}
+
+.commentText{
+  font-size: 0.9em;
+}
+
+.comments .deleteBtn{
+  padding: 0.2em 0.5em;
+  align-items: center;
+  color: crimson;
+  border-color: crimson;
+  margin-left: 16px;
+}
+
+.comments .deleteBtn:hover{
+  background-color: crimson;
+  color: white;
+}
+

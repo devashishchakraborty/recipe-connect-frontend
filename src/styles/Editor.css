@@ -1,0 +1,19 @@
+.mdxEditor {
+  border: 2px solid var(--pico-muted-border-color);
+}
+
+.mdxeditor-toolbar {
+  border-radius: 0px !important;
+}
+
+.editorWrapper .meta {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  b {
+    font-size: 2em;
+    flex: 1;
+  }
+}

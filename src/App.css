@@ -1,0 +1,35 @@
+.mdxeditor-popup-container {
+  border: 0px;
+}
+
+/* Header */
+header {
+  border-bottom: 2px solid var(--pico-muted-border-color);
+  nav {
+    display: flex !important;
+    flex-wrap: wrap;
+  }
+  li {
+    width: max-content;
+  }
+}
+
+.mainLogo {
+  display: flex !important;
+  align-items: center;
+  gap: 16px;
+  font-size: 2.2em;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+main .loginSection ,
+main .signUpSection  {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  > * {
+    max-width: 610px;
+
+  }
+}
