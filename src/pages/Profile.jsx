@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "../styles/Profile.css";
 
-const Profile = ({ user, token }) => {
+const Profile = ({ user }) => {
   const [copied, setCopied] = useState(false);
   useEffect(() => {
     if (copied) {
@@ -19,17 +19,6 @@ const Profile = ({ user, token }) => {
       </div>
       <div>
         <b>Email</b>: {user.email}
-      </div>
-      <div>
-        <button
-          onClick={() => {
-            navigator.clipboard.writeText(token);
-            setCopied(true);
-          }}
-        >
-          Copy API Key
-        </button>
-        {copied && <small style={{color: "green", marginLeft: "16px"}}>Copied!</small>}
       </div>
     </section>
   );

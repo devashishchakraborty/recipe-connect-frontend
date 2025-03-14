@@ -27,7 +27,7 @@ const Comments = ({ recipe, recipeId, token, user }) => {
 
       const data = await response.json();
       setComments((prev) => [data, ...prev]);
-      setNewComment({ name: "", email: "", text: "" });
+      setNewComment("");
     } catch (err) {
       console.error("Error fetching data:", err);
       setError(err.message);
@@ -54,7 +54,6 @@ const Comments = ({ recipe, recipeId, token, user }) => {
 
       const data = await response.json();
       setComments((prev) => prev.filter((comment) => comment.id != data.id));
-      setNewComment({ name: "", email: "", text: "" });
     } catch (err) {
       console.error("Error deleting comment:", err);
       setError(err.message);
@@ -70,11 +69,10 @@ const Comments = ({ recipe, recipeId, token, user }) => {
       <h3>Comments</h3>
       <div className="commentsMeta">{comments.length} comments</div>
       <hr />
-      <details>
-        <summary role="button" className="secondary outline">
-          Add Comment
-        </summary>
-        <form onSubmit={addComment}>
+
+      <form onSubmit={addComment} className="addCommentForm">
+        <fieldset>
+          <legend><b>Add Comment</b></legend>
           <textarea
             name="commentText"
             id="commentText"
@@ -86,19 +84,18 @@ const Comments = ({ recipe, recipeId, token, user }) => {
           <button type="submit" disabled={isSubmitting}>
             Submit
           </button>
-        </form>
-      </details>
-
+        </fieldset>
+      </form>
       <div className="comments">
         {comments.length > 0 &&
           comments.map((comment) => (
             <section key={comment.id}>
               <div className="commentMeta">
                 <span className="authorName">
-                  <b>{comment.author_name}</b>
+                  <b>{comment.author.name}</b>
                 </span>
                 &#10072;
-                <span className="authorEmail">{comment.author_email}</span>
+                <span className="authorEmail">{comment.author.email}</span>
                 {/* Only show delete button if recipe or comment author is logged in */}
                 {(recipe.author_id == user.id ||
                   comment.author_id == user.id ||
@@ -106,10 +103,9 @@ const Comments = ({ recipe, recipeId, token, user }) => {
                   <button
                     onClick={() => deleteComment(comment.id)}
                     className="deleteBtn outline"
-                    aria-busy={isSubmitting}
                     disabled={isSubmitting}
                   >
-                    {isSubmitting || <MdiDelete />}
+                    <MdiDelete />
                   </button>
                 )}
               </div>
