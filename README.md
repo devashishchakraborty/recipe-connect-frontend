@@ -1,6 +1,6 @@
 
-# OdinBlog Dashboard 
-- This repository contains the dashboard for the Blog project, enabling users to manage posts and moderate comments.
+# Recipe Connect 
+- This repository contains the Frontend Code for the RecipeConnect Project, enabling users to view and manage recipes and moderate comments.
 - Live Link -> [Here](https://recipe-connect.pages.dev/)
 - Backend API created previously [here](https://github.com/devashishchakraborty/recipe-connect-backend).
 
