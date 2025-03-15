@@ -6,11 +6,11 @@ const getImgUrlLength = (text) => {
 }
 
 const clipText = (text) => {
-  if (text.length <= 150) return text;
-  const imgLength = getImgUrlLength(text.slice(0, 150));
-  const breakIndex = text.slice(150 + imgLength).search(/\n/);
+  if (text.length <= 200) return text;
+  const imgLength = getImgUrlLength(text.slice(0, 300));
+  const breakIndex = text.slice(200 + imgLength).search(/\n/);
 
-  return text.slice(0, 150 + imgLength + breakIndex) + "... **Read More**";
+  return text.slice(0, 200 + imgLength + breakIndex) + "... **Read More**";
 };
 
 const formatTimestamp = (timestamp) => {
