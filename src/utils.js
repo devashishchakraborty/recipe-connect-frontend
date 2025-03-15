@@ -1,7 +1,16 @@
+const getImgUrlLength = (text) => {
+  const regex = /!\[.*\]\(.+?\)/;
+  const match = text.match(regex); // Get first match
+  // const match = null
+  return match ? match[0].length : 0; // Return its length or 0 if no match
+}
+
 const clipText = (text) => {
-  if (text.length <= 170) return text;
-  const breakIndex = text.slice(170).search(/\n/);
-  return text.slice(0, 170 + breakIndex) + "... **Read More**";
+  if (text.length <= 150) return text;
+  const imgLength = getImgUrlLength(text.slice(0, 150));
+  const breakIndex = text.slice(150 + imgLength).search(/\n/);
+
+  return text.slice(0, 150 + imgLength + breakIndex) + "... **Read More**";
 };
 
 const formatTimestamp = (timestamp) => {

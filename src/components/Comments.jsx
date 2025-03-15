@@ -97,8 +97,8 @@ const Comments = ({ recipe, recipeId, token, user }) => {
                 &#10072;
                 <span className="authorEmail">{comment.author.email}</span>
                 {/* Only show delete button if recipe or comment author is logged in */}
-                {(recipe.author_id == user.id ||
-                  comment.author_id == user.id ||
+                {(comment.author_id == user.id ||
+                  recipe.author_id == user.id ||
                   user.role == "ADMIN") && (
                   <button
                     onClick={() => deleteComment(comment.id)}
