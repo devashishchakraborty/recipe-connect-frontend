@@ -6,7 +6,7 @@
 
 .recipe {
   position: relative;
-  header {
+  .headerPadded {
     padding-right: 170px !important;
   }
 }

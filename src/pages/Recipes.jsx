@@ -110,7 +110,15 @@ const Recipes = ({ token, user, all = false }) => {
                   <div className="recipe" key={recipe.id}>
                     <Link to={`/recipes/${recipe.id}`}>
                       <article>
-                        <header>
+                        <header
+                          className={
+                            all
+                              ? user.role === "ADMIN"
+                                ? "headerPadded"
+                                : null
+                              : "headerPadded"
+                          }
+                        >
                           <div>
                             <b>{recipe.title}</b>
                           </div>
@@ -141,51 +149,53 @@ const Recipes = ({ token, user, all = false }) => {
                         </Markdown>
                       </article>
                     </Link>
-                    { all ? user.role == "ADMIN" && (
-                      <details className="dropdown recipeActions">
-                        <summary>Update</summary>
-                        <ul>
-                          {recipe.author_id === user.id && (
-                            <>
-                              <li>
-                                <Link to={`/recipes/${recipe.id}/edit`}>
-                                  <MdiEdit />
-                                  Edit
-                                </Link>
-                              </li>
-                              <li>
-                                <Link
-                                  to="#"
-                                  onClick={() => togglePublish(recipe)}
-                                >
-                                  {recipe.published ? (
-                                    <>
-                                      <MdiPublishOff />
-                                      Unpublish
-                                    </>
-                                  ) : (
-                                    <>
-                                      <MdiPublish />
-                                      Publish
-                                    </>
-                                  )}
-                                </Link>
-                              </li>
-                            </>
-                          )}
+                    {all ? (
+                      user.role == "ADMIN" && (
+                        <details className="dropdown recipeActions">
+                          <summary>Update</summary>
+                          <ul>
+                            {recipe.author_id === user.id && (
+                              <>
+                                <li>
+                                  <Link to={`/recipes/${recipe.id}/edit`}>
+                                    <MdiEdit />
+                                    Edit
+                                  </Link>
+                                </li>
+                                <li>
+                                  <Link
+                                    to="#"
+                                    onClick={() => togglePublish(recipe)}
+                                  >
+                                    {recipe.published ? (
+                                      <>
+                                        <MdiPublishOff />
+                                        Unpublish
+                                      </>
+                                    ) : (
+                                      <>
+                                        <MdiPublish />
+                                        Publish
+                                      </>
+                                    )}
+                                  </Link>
+                                </li>
+                              </>
+                            )}
 
-                          <li>
-                            <Link
-                              to="#"
-                              style={{ color: "crimson" }}
-                              onClick={() => deleteRecipe(recipe.id)}
-                            >
-                              <MdiDelete />
-                              Delete
-                            </Link>
-                          </li>
-                        </ul>
-                      </details>
+                            <li>
+                              <Link
+                                to="#"
+                                style={{ color: "crimson" }}
+                                onClick={() => deleteRecipe(recipe.id)}
+                              >
+                                <MdiDelete />
+                                Delete
+                              </Link>
+                            </li>
+                          </ul>
+                        </details>
+                      )
                     ) : (
                       <details className="dropdown recipeActions">
                         <summary>Update</summary>
