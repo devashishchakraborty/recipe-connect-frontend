@@ -141,7 +141,52 @@ const Recipes = ({ token, user, all = false }) => {
                         </Markdown>
                       </article>
                     </Link>
-                    {all || (
+                    { all ? user.role == "ADMIN" && (
+                      <details className="dropdown recipeActions">
+                        <summary>Update</summary>
+                        <ul>
+                          {recipe.author_id === user.id && (
+                            <>
+                              <li>
+                                <Link to={`/recipes/${recipe.id}/edit`}>
+                                  <MdiEdit />
+                                  Edit
+                                </Link>
+                              </li>
+                              <li>
+                                <Link
+                                  to="#"
+                                  onClick={() => togglePublish(recipe)}
+                                >
+                                  {recipe.published ? (
+                                    <>
+                                      <MdiPublishOff />
+                                      Unpublish
+                                    </>
+                                  ) : (
+                                    <>
+                                      <MdiPublish />
+                                      Publish
+                                    </>
+                                  )}
+                                </Link>
+                              </li>
+                            </>
+                          )}
+
+                          <li>
+                            <Link
+                              to="#"
+                              style={{ color: "crimson" }}
+                              onClick={() => deleteRecipe(recipe.id)}
+                            >
+                              <MdiDelete />
+                              Delete
+                            </Link>
+                          </li>
+                        </ul>
+                      </details>
+                    ) : (
                       <details className="dropdown recipeActions">
                         <summary>Update</summary>
                         <ul>
